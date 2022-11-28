@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="mx-auto align-middle m-5 p-3 col-sm-3 pt-3 shadow">
+  <p>Edit book:</p>
+  <form action="{% url 'library:edit_genre' genre.id %}" method='post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary btn-block"> Update Genre </button>
+  </form>
+</div>
+{% endblock content %}

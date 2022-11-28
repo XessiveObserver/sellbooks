@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="mx-auto align-middle m-5 p-3 col-sm-3 pt-3 shadow">
+    <p>Add a new book:</p>
+    <form action="{% url 'library:add_book' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button name="submit" class="btn btn-primary btn-block">Add book</button>
+    </form>
+</div>
+{% endblock content %}

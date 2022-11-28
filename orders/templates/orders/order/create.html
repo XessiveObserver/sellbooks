@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+{% load bootstrap4 %}
+{% block title %}
+    Checkout
+{% endblock title %}
+{% block content %}
+<div class="row">
+<div class="col-sm-3 mx-auto align-middle m-5 p-3 pt-3 shadow">
+    <p class="text-warning">
+        Please remember to fill out the form below before check out
+    </p>
+    <form method="post" class="order-form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <p><input type="submit" value="Place order" class="btn btn-primary btn-block"></p>
+    </form>
+</div>
+<div class="col-sm shadow h-25 p-3 mx-auto align-middle m-5 p-3 col-sm-3 pt-3 shadow">
+    <h1 class="display-4" style="font-size: 3rem;">Checkout</h1><hr />
+    <h3 class="display-4" style="font-size: 2rem;">Your order</h3><hr/ >
+    <ul class="list-group list-group-flush">
+        {% for item in cart %}
+        <li class="list-group-item">
+            <p class="text-info">
+                {{ item.quantity }} x {{ item.book.title }}
+            </p>
+            <p class="text-info">
+                ${{ item.total_price }}         
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+    <p class="mx-3 font-weight-bold">Total: ${{ cart.get_total_price }}</p>
+</div>
+</div>
+{% endblock content %}

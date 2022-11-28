@@ -1,0 +1,21 @@
+{% load bootstrap4 %}
+<div class="text-center m-3" style="height:50px;">
+    <div class="card">
+
+        {% with total_items=cart|length %}
+        {% if total_items > 0 %}
+        <p>
+            Your cart: <a href="{% url 'cart:cart_detail' %}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+            </a>
+        </p>
+        {% else %}
+        <p class="my-2">
+            Your cart is empty.
+        </p>
+        {% endif %}
+        {% endwith %}
+
+    </div>
+</div>

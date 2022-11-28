@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+{% load bootstrap4 %}
+{% block title %}Create an account{% endblock title %}
+{% block content %}
+<div class="mx-auto align-middle m-5 p-3 col-sm-3 pt-3 shadow">
+  <h1>Create an account</h1>
+  <p>Please, sign up using the following form:</p>
+  <form method="post">
+    {% bootstrap_form user_form %}
+    {% csrf_token %}
+    <p><button type="submit" class="btn btn-primary btn-block">Register </button></p>
+  </form>
+</div>
+{% endblock content %}

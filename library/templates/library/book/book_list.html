@@ -1,0 +1,81 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block cart %}
+{% include "../cart.html" %}
+{% endblock cart %}
+{% block title %}
+{% if genre %}
+{{ genre.name }}
+{% else %}
+Books
+{% endif %}
+{% endblock title %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        {% comment %} Genre Colomn {% endcomment %}
+        <div class="col-sm-3">
+            <h3 class="text-center mb-2 display-4" style="font-size:2rem;">Genres</h3>
+            <hr />
+            <div class="mx-auto justify-content-center shadow">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" {% if not genre %} {% endif %}>
+                        <a href="{% url 'library:book_list' %}">All</a>
+                    </li>
+
+                    {% for g in genres %}
+
+                    {% if user.is_authenticated %}
+
+                    <li class="list-group-item" {% if genre.slug == g.slug %} {% endif %}>
+                        <a href="{{ g.get_absolute_url }}">{{ g.name }}</a>
+                        <p><a href="{% url 'library:edit_genre' g.id %}">edit {{ g.name }}</a></p>
+                    </li>
+                    {% else %}
+                    <li class="list-group-item" {% if genre.slug == g.slug %} {% endif %}>
+                        <a href="{{ g.get_absolute_url }}">{{ g.name }}</a>
+                    </li>
+
+                    {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+            {% comment %} Books Column {% endcomment %}
+            <div class="d-flex justify-content-center col-sm-7">
+                <div>
+                    <h2 class="text-center display-4" style="font-size:2rem;">{% if genre %}Genre - {{ genre.name }} <hr />{% else %}Books
+                    <hr />
+                        {% endif %}
+                    </h2>
+                        {% for book in books %}
+
+                        <ul class="list-unstyled d-sm-inline-flex mx-3">
+                            <li class="">
+                                <div class="card" style="width: 16.3rem;">
+
+                                    <a class="m-2" href="{{ book.get_absolute_url }}">
+                                        <img style="height: 12rem;" class="card-img-top img-fluid" src="{% if book.image %}{{ book.image.url }} 
+                                    {%else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ book.title }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <p>
+                                        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+                                        </p>
+                                        <p>
+                                        ${{ book.price }}
+                                        </p>
+                                    </div>
+                                </div>                        
+                            </li>
+                        </ul>
+                    
+                        {% endfor %}
+                </div>
+            </div>
+    </div>
+</div>
+
+{% endblock content %}

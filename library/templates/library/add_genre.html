@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="mx-auto align-middle m-5 p-3 col-sm-3 pt-3 shadow">
+    <p>Add a new genre:</p>
+    <form action="{% url 'library:add_genre' %}" method='post'>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button name="submit" class="btn btn-primary btn-block">Add genre</button>
+    </form>
+</div>
+{% endblock content %}

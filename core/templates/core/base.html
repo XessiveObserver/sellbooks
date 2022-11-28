@@ -1,0 +1,73 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sell My Book</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+        {% block title %} {% endblock title %}
+    </title>
+    {% block css %} {% endblock css %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="">
+            <a class="navbar-brand" href="#">Logo</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <a class="text-capitalize nav-link" href="{% url 'core:index' %}">home</a>
+            <a class="text-capitalize nav-link" href="{% url 'library:book_list' %}">shop books</a>
+            <a class="text-capitalize nav-link" href="{% url 'core:about' %}">about</a>
+            <a class="text-capitalize nav-link" href="{% url 'core:contact' %}">contact</a>
+        </div>
+        <div class="justify-content-end collapse navbar-collapse" id="navbarNavDropdown">
+            {% if user.is_authenticated %}
+
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    {{ request.user.username }}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm">
+                    <a class="dropdown-item text-capitalize nav-link" href="{% url 'users:dashboard' %}">Profile</a>
+                    <a class="dropdown-item text-capitalize nav-link" href="{% url 'users:logout' %}">log out</a>
+                </div>
+            </div>
+
+            {% else %}
+            <a class="mx-2 btn btn-outline-primary text-capitalize nav-link" href="{% url 'login' %}">log in</a>
+            <a class="mx-2 btn btn-primary text-capitalize nav-link" href="{% url 'users:register' %}">sign up</a>
+        </div>
+        {% endif %}
+    </nav>
+    <!-- Django flash messages -->
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                <a href="#" class="close">x</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% block cart %}
+    {% endblock cart %}
+    {% block content %} {% endblock content %}
+
+    <!-- footer -->
+</body>
+
+</html>
