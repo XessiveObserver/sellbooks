@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load bootstrap4 %}
 {% load static %}
 {% block title %}
 {% if genre %}
@@ -9,5 +10,45 @@ Books
 {% endblock title %}
 {% block content %}
 
+<div class="d-flex justify-content-center col-sm">
+                <div>
+                    <h2 class="text-center display-4 text-info" style="font-size:2rem;">{% if genre %}Genre - {{ genre.name }} <hr />{% else %} Here are some books!
+                    <hr />
+                        {% endif %}
+                    </h2>
+                        {% for book in books %}
 
+                        <ul class="list-unstyled d-sm-inline-flex mx-3">
+                            <li class="">
+                                <div class="card" style="width: 18.5rem;">
+
+                                    <a class="m-2" href="{{ book.get_absolute_url }}">
+                                        <img style="height: 12rem;" class="card-img-top img-fluid" src="{% if book.image %}{{ book.image.url }} 
+                                    {%else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ book.title }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <p>
+                                        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+                                        </p>
+                                        <p>
+                                        ${{ book.price }}
+                                        </p>
+                                        <form action="{% url "cart:cart_add" book.id %}" method="post">
+                                            {% csrf_token %}
+                                            {% bootstrap_form cart_book_form %}
+                                            <button type="submit"class="btn btn-primary btn-block"><i class="bi bi-cart-plus"></i> Add to cart</button>
+                                        </form>
+                                        
+                                            <a class="btn btn-info btn-block my-1" href="{{ book.get_absolute_url }}">
+                                                view more
+                                            </a>
+                                                            
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    
+                        {% endfor %}
+                </div>
+            </div>
 {% endblock content %}

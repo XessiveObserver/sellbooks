@@ -12,7 +12,7 @@
     <p>
     <a href="{% url 'password_reset' %}">Forgotten your password?</a>
     </p>
-  <form action="{% url 'login' %}" method="post">
+  <form action="{% url 'login' %}" method="post" class="no-border">
       {% bootstrap_form form %} {% csrf_token %}
       <input type="hidden" name="next" value="{{ next }}" class="form-control" />
       <p><button type="submit"class="btn btn-primary btn-block"> Log in </button>

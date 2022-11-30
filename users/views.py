@@ -22,12 +22,12 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated '
-                                        'successfully')
+                    return messages.success(request, 'Authenticated '
+                                            'successfully')
                 else:
-                    return HttpResponse('Disabled user')
+                    return messages.error(request, 'Disabled user')
             else:
-                return HttpResponse('Invalid login')
+                return messages.info(request, 'Invalid login')
     else:
         form = LoginForm()
     return render(request, 'users/login.html', {'form': form})
@@ -36,6 +36,7 @@ def user_login(request):
 # Dashboard view
 @login_required
 def dashboard(request):
+    # messages.success(request, 'Successfully logged in')
     return render(request, 'users/dashboard.html')
 
 # Registration view

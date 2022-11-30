@@ -1,21 +1,50 @@
 {% extends "core/base.html" %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
-<h1>Dashboard</h1>
-<p>Welcome to your dashboard.</p>
-<p>
-    <a href="{% url 'password_change' %}">Change password</a>
-</p>
-<p>
-    <a href="{% url 'users:edit' %}">Edit profile</a>
-</p>
-<p>
-    <a href="{% url 'library:add_genre' %}">Add genre</a>
-</p>
-<p>
-    <a href="{% url 'library:add_book' %}">Add book</a>
-</p>
-<p>
-    <a href="{% url 'library:book_list' %}">See Published Books</a>
-</p>
+{% block sidebar %}
+{% endblock sidebar %}
+<div class="col-sm text-center">
+    <h1>Dashboard</h1>
+</div>
+<div class="row container">
+    <!-- Side menu dashbord -->
+    <div class="col-sm-4 mx-3">
+        <h2 class="h2 font-weight-light text-info">
+            <i class="bi bi-gear"></i>
+            Settings
+        </h2>
+        <hr />
+        <p>
+            <a href="{% url 'password_change' %}">
+                <i class="bi bi-lock"></i>
+                Change password
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'users:edit' %}">
+                <i class="bi bi-person-bounding-box"></i>
+                Edit profile
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'library:add_genre' %}">
+                <i class="bi bi-tags"></i>
+                Add genre
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'library:add_book' %}">
+                <i class="bi bi-book"></i>
+                Add book
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'library:book_list' %}">
+                <i class="bi bi-bookshelf"></i>
+                Published books
+            </a>
+        </p>
+    </div>
+    <div class="col-sm-8"></div>
+</div>
 {% endblock content %}

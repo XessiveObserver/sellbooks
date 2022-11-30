@@ -33,4 +33,6 @@ class UserEditForm(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('date_of_birth', 'photo')
+        fields = ('age', 'date_of_birth', 'photo', 'cover_photo', 'biography')
+        date = forms.DateTimeField(
+            input_formats=['%d/%m/%Y %H:%M'])
