@@ -18,9 +18,9 @@
                 {% static 'img/no_image.png' %}{% endif %}" class="my-2 img-fluid img-thumbnail">
             </div>
             <div>
-                <p><a href="{% url 'library:edit_book' book.id %}">edit {{ book.title }}</a></p>
+                <p><a class="text-decoration-none text-info" href="{% url 'library:edit_book' book.id %}"><i class="bi bi-pen"></i> Edit {{ book.title }}</a></p>
                 <h2 class="my-2">
-                    <a href="{{ book.genre.get_absolute_url }}">
+                    <a class="text-decoration-none font-weight-light" href="{{ book.genre.get_absolute_url }}">
                         {{ book.genre }}
                     </a>
                 </h2>

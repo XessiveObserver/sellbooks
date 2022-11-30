@@ -22,13 +22,13 @@ Books
                             <li class="">
                                 <div class="card" style="width: 18.5rem;">
 
-                                    <a class="m-2" href="{{ book.get_absolute_url }}">
+                                    <a class="m-2 text-decoration-none" href="{{ book.get_absolute_url }}">
                                         <img style="height: 12rem;" class="card-img-top img-fluid" src="{% if book.image %}{{ book.image.url }} 
                                     {%else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ book.title }}">
                                     </a>
                                     <div class="card-body">
                                         <p>
-                                        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+                                        <a class="text-decoration-none" href="{{ book.get_absolute_url }}">{{ book.title }}</a>
                                         </p>
                                         <p>
                                         ${{ book.price }}

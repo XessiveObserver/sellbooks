@@ -30,8 +30,8 @@ Books
                     {% if user.is_authenticated %}
 
                     <li class="list-group-item" {% if genre.slug == g.slug %} {% endif %}>
-                        <a href="{{ g.get_absolute_url }}">{{ g.name }}</a>
-                        <p><a href="{% url 'library:edit_genre' g.id %}">edit {{ g.name }}</a></p>
+                        <a class="text-decoration-none" href="{{ g.get_absolute_url }}">{{ g.name }}</a>
+                        <p><a class="text-decoration-none text-info" href="{% url 'library:edit_genre' g.id %}"><i class="bi bi-pen"></i> Edit {{ g.name }}</a></p>
                     </li>
                     {% else %}
                     <li class="list-group-item" {% if genre.slug == g.slug %} {% endif %}>
@@ -57,13 +57,13 @@ Books
                             <li class="">
                                 <div class="card" style="width: 16.8rem;">
 
-                                    <a class="m-2" href="{{ book.get_absolute_url }}">
+                                    <a class="m-2 text-decoration-none" href="{{ book.get_absolute_url }}">
                                         <img style="height: 12rem;" class="card-img-top img-fluid" src="{% if book.image %}{{ book.image.url }} 
                                     {%else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ book.title }}">
                                     </a>
                                     <div class="card-body">
                                         <p>
-                                        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+                                        <a class="text-decoration-none" href="{{ book.get_absolute_url }}">{{ book.title }}</a>
                                         </p>
                                         <p>
                                         ${{ book.price }}
