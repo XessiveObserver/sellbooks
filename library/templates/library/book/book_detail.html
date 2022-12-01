@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {% load static %}
 {% block cart %}
-    {% include "../cart.html" %}
+{% include "../cart.html" %}
 {% endblock cart %}
 {% block title %}
 {{ book.title }}
@@ -13,12 +13,14 @@
     <div class="col-sm d-flex justify-content-center">
         <div>
             <div>
-                <h1 class="display-4 my-2">{{ book.title }}</h1><hr />
+                <h1 class="display-4 my-2">{{ book.title }}</h1>
+                <hr />
                 <img style="width: 30rem; height: 20rem;" src="{% if book.image %}{{ book.image.url }}{% else %}
                 {% static 'img/no_image.png' %}{% endif %}" class="my-2 img-fluid img-thumbnail">
             </div>
             <div>
-                <p><a class="text-decoration-none text-info" href="{% url 'library:edit_book' book.id %}"><i class="bi bi-pen"></i> Edit {{ book.title }}</a></p>
+                <p><a class="text-decoration-none text-info" href="{% url 'library:edit_book' book.id %}"><i
+                            class="bi bi-pen"></i> Edit {{ book.title }}</a></p>
                 <h2 class="my-2">
                     <a class="text-decoration-none font-weight-light" href="{{ book.genre.get_absolute_url }}">
                         {{ book.genre }}
@@ -29,11 +31,12 @@
                 <p class="font-weight-bold my-2">${{ book.price }}</p>
                 <hr />
                 {{ book.description|linebreaks }}
-                <hr />                
-                <form class="mb-5" action="{% url "cart:cart_add" book.id %}" method="post">
+                <hr />
+                <form class="mb-5" action="{% url " cart:cart_add" book.id %}" method="post">
                     {% bootstrap_form cart_book_form %}
                     {% csrf_token %}
-                    <button type="submit"class="btn btn-primary btn-block"><i class="bi bi-cart-plus"></i> Add to cart</button>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="bi bi-cart-plus"></i> Add to
+                        cart</button>
                 </form>
             </div>
         </div>
@@ -42,7 +45,8 @@
     <div class="col-sm d-flex justify-content-center">
         <div>
             <div>
-                <h1 class="display-4 my-2">{{ book.title }}</h1> <hr />
+                <h1 class="display-4 my-2">{{ book.title }}</h1>
+                <hr />
                 <img style="height:20rem; width:30rem;" src="{% if book.image %}{{ book.image.url }}{% else %}
                 {% static 'img/no_image.png' %}{% endif %}" class="img-fluid img-thumbnail">
             </div>
@@ -52,15 +56,16 @@
                         {{ book.genre }}
                     </a>
                 </h2>
-                <hr/ >
+                <hr />
                 <p class="font-weight-bold my-2">${{ book.price }}</p>
-                <hr/ >
+                <hr />
                 {{ book.description|linebreaks }}
                 <hr />
-                <form action="{% url "cart:cart_add" book.id %}" method="post">
+                <form action="{% url 'cart:cart_add' book.id %}" method="post">
                     {% csrf_token %}
                     {% bootstrap_form cart_book_form %}
-                    <button type="submit"class="btn btn-primary btn-block"><i class="bi bi-cart-plus"></i> Add to cart</button>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="bi bi-cart-plus"></i> Add to
+                        cart</button>
                 </form>
             </div>
         </div>

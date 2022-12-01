@@ -1,14 +1,12 @@
 {% extends "core/base.html" %}
+{% load static %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
 {% block sidebar %}
 {% endblock sidebar %}
-<div class="col-sm text-center">
-    <h1>Dashboard</h1>
-</div>
 <div class="row container">
     <!-- Side menu dashbord -->
-    <div class="col-sm-4 mx-3">
+    <div class="col-sm-3 mx-3 my-3">
         <h2 class="h2 font-weight-light text-info">
             <i class="bi bi-gear"></i>
             Settings
@@ -45,6 +43,31 @@
             </a>
         </p>
     </div>
-    <div class="col-sm-8"></div>
+    <div class="col-sm-8">
+        {% if request.user.is_authenticated %}
+            <div class="mx-auto">
+                {% if request.user.profile.cover_url %}
+                    <img src="{{ request.user.profile.cover_url}}" 
+                    alt="cover photo" class="img-fluid" style="height: 22rem; width:50rem;">
+                {% else %}
+                    <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="img-fluid">
+                {% endif %}
+            </div>
+
+            <div class="mx-auto">
+                {% if request.user.profile.photo_url %}
+                    <img src="{{ request.user.profile.photo_url}}" 
+                    alt="profile photo" class="img-fluid" style="height: 20rem; width:20rem;">
+                {% else %}
+                    <img src="{% static 'images/avatar.jpg'%}" alt="avatar" class="img-fluid">
+                {% endif %}
+            
+            </div>
+        {% else %}
+        <p>
+            No photo
+        </p>
+        {% endif %}
+    </div>
 </div>
 {% endblock content %}

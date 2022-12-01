@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,8 +40,13 @@
             <div class="nav-item dropdown mr-8">
                 <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                     <!-- Log out icon -->
-                    <i class="bi bi-person-circle"></i>
-                    {{ request.user.username }}
+                    {% if request.user.profile.photo_url %}
+                        <img src="{{ request.user.profile.photo_url}}" alt="profile photo" class="img-fluid"
+                            style="height: 1.5rem; width:1.5rem;">
+                        {% else %}
+                        <img src="{% static 'images/avatar.jpg'%}" alt="avatar" class="img-fluid"
+                        style="height: 1.5rem; width:1.5rem;">
+                        {% endif %}
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm">
                     <a class="dropdown-item text-capitalize nav-link" href="{% url 'users:dashboard' %}">
