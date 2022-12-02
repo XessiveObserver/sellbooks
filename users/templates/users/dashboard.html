@@ -4,9 +4,20 @@
 {% block content %}
 {% block sidebar %}
 {% endblock sidebar %}
-<div class="row container">
+<div class="row col-sm-12 container">
     <!-- Side menu dashbord -->
-    <div class="col-sm-3 mx-3 my-3">
+    <div class="col-sm-2 mx-3 mt-1 jumbotron">
+
+        <div class="mx-auto">
+                {% if request.user.profile.photo_url %}
+                    <img src="{{ request.user.profile.photo_url}}" 
+                    alt="profile photo" class="img-fluid img-thumbnail rounded-circle" style="height: 10rem; width:10rem;">
+                {% else %}
+                    <img src="{% static 'images/avatar.jpg'%}" alt="avatar" class="img-fluid img-thumbnail">
+                {% endif %}
+            
+        </div>
+        <hr />   
         <h2 class="h2 font-weight-light text-info">
             <i class="bi bi-gear"></i>
             Settings
@@ -43,30 +54,62 @@
             </a>
         </p>
     </div>
-    <div class="col-sm-8">
+    
+    <div class="col-sm-9 jumbotron mt-1">
         {% if request.user.is_authenticated %}
-            <div class="mx-auto">
+            <div class="col d-flex justify-content-center">
                 {% if request.user.profile.cover_url %}
                     <img src="{{ request.user.profile.cover_url}}" 
-                    alt="cover photo" class="img-fluid" style="height: 22rem; width:50rem;">
+                    alt="cover photo" class="mt-n4 img-fluid img-thumbnail" style="height: 22rem; width:50rem;">
                 {% else %}
-                    <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="img-fluid">
+                    <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="mt-n4 img-fluid img-thumbnail">
                 {% endif %}
             </div>
 
-            <div class="mx-auto">
-                {% if request.user.profile.photo_url %}
-                    <img src="{{ request.user.profile.photo_url}}" 
-                    alt="profile photo" class="img-fluid" style="height: 20rem; width:20rem;">
-                {% else %}
-                    <img src="{% static 'images/avatar.jpg'%}" alt="avatar" class="img-fluid">
-                {% endif %}
-            
+            <div class="row col-sm-12 my-5 mx-0">
+                <div class="col-sm-5 bg-light mx-auto">
+                    <div class="my-3">
+                        <p>
+                            <label class="font-weight-bold">Name:</label> {{ request.user.username }}
+                        </p>
+                        <hr />
+                        <p>
+                            <label class="font-weight-bold">First Name:</label> {{ request.user.first_name }}
+                        </p>
+                        <hr />
+                        <p>
+                            <label class="font-weight-bold">Age:</label> {{ request.user.profile.age }}
+                        </p>
+                        <hr />
+                        <p>
+                            <label class="font-weight-bold">Date Of Birth:</label> {{ request.user.profile.date_of_birth }}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 bg-light mx-auto my-1">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card my-3">
+                            <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-center text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="bi bi-fingerprint" style="font-size: 1.5rem;"></i>
+                                    Biography
+                                </button>
+                            </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    {{ request.user.profile.biography }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        {% else %}
-        <p>
-            No photo
-        </p>
+            
+
+                
         {% endif %}
     </div>
 </div>

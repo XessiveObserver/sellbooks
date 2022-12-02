@@ -32,7 +32,7 @@
                 <hr />
                 {{ book.description|linebreaks }}
                 <hr />
-                <form class="mb-5" action="{% url " cart:cart_add" book.id %}" method="post">
+                <form class="mb-5" action="{% url 'cart:cart_add' book.id %}" method="post">
                     {% bootstrap_form cart_book_form %}
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary btn-block"><i class="bi bi-cart-plus"></i> Add to
