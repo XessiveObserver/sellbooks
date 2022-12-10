@@ -87,3 +87,9 @@ def edit(request):
 
     return render(request, 'users/edit.html', {'user_form': user_form,
                                                'profile_form': profile_form})
+
+
+@login_required
+def settings(request):
+    """Contains all settings."""
+    return render(request, 'users/settings.html')

@@ -6,7 +6,7 @@
 {% endblock sidebar %}
 <div class="row col-sm-12 container">
     <!-- Side menu dashbord -->
-    <div class="col-sm-2 mx-3 mt-1 jumbotron">
+    <div class="col-sm-2 mx-3 mt-1">
 
         <div class="mx-auto">
                 {% if request.user.profile.photo_url %}
@@ -55,12 +55,12 @@
         </p>
     </div>
     
-    <div class="col-sm-9 jumbotron mt-1">
+    <div class="col-sm-9 mt-1">
         {% if request.user.is_authenticated %}
             <div class="col d-flex justify-content-center">
                 {% if request.user.profile.cover_url %}
                     <img src="{{ request.user.profile.cover_url}}" 
-                    alt="cover photo" class="mt-n4 img-fluid img-thumbnail" style="height: 22rem; width:50rem;">
+                    alt="cover photo" class="mt-1 img-fluid img-thumbnail" style="height: 22rem; width:50rem;">
                 {% else %}
                     <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="mt-n4 img-fluid img-thumbnail">
                 {% endif %}

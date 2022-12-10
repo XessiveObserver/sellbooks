@@ -29,10 +29,30 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            {% if user.is_authenticated %}
             <a class="text-capitalize nav-link" href="{% url 'core:index' %}">home</a>
             <a class="text-capitalize nav-link" href="{% url 'library:book_list' %}">shop books</a>
             <a class="text-capitalize nav-link" href="{% url 'core:about' %}">about</a>
             <a class="text-capitalize nav-link" href="{% url 'core:contact' %}">contact</a>
+
+            <!-- Account details -->
+            <div class="mx-auto d-flex">
+                <a class="text-capitalize nav-link" href="{% url 'users:dashboard' %}">
+                    <i class="bi bi-person-bounding-box"></i>
+                    my account
+                </a>
+                <a class="text-capitalize nav-link" href="{% url 'users:dashboard' %}">
+                    <i class="bi bi-gear-wide-connected"></i>
+                    settings
+                </a>
+            </div>
+
+            {% else %}
+            <a class="text-capitalize nav-link" href="{% url 'core:index' %}">home</a>
+            <a class="text-capitalize nav-link" href="{% url 'library:book_list' %}">shop books</a>
+            <a class="text-capitalize nav-link" href="{% url 'core:about' %}">about</a>
+            <a class="text-capitalize nav-link" href="{% url 'core:contact' %}">contact</a>
+            {% endif %}
         </div>
         <div class="justify-content-end collapse navbar-collapse" id="navbarNavDropdown">
             {% if user.is_authenticated %}
@@ -51,7 +71,11 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm">
                     <a class="dropdown-item text-capitalize nav-link" href="{% url 'users:dashboard' %}">
                         <i class="bi bi-person-bounding-box"></i>
-                        Profile
+                        profile
+                    </a>
+                    <a class="dropdown-item text-capitalize nav-link" href="{% url 'users:settings' %}">
+                        <i class="bi bi-gear-wide-connected"></i>
+                        settings
                     </a>
                     <a class="dropdown-item text-capitalize nav-link" href="{% url 'users:logout' %}">
                         <i class="bi bi-box-arrow-right"></i>

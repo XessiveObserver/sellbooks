@@ -1,12 +1,64 @@
 {% extends "core/base.html" %}
+{% load static %}
 {% load bootstrap4 %}
 {% block content %}
-<div class="mx-auto align-middle m-5 p-3 col-sm-3 pt-3 shadow">
-    <p>Add a new genre:</p>
-    <form action="{% url 'library:add_genre' %}" method='post'>
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <button name="submit" class="btn btn-primary btn-block">Add genre</button>
-    </form>
+<div class="row col-sm-12 container">
+    <div class="col-sm-2 ml-5 mt-3">
+
+        <div class="mx-auto">
+            {% if request.user.profile.photo_url %}
+            <img src="{{ request.user.profile.photo_url}}" alt="profile photo"
+                class="img-fluid img-thumbnail rounded-circle" style="height: 10rem; width:10rem;">
+            {% else %}
+            <img src="{% static 'images/avatar.jpg'%}" alt="avatar" class="img-fluid img-thumbnail">
+            {% endif %}
+
+        </div>
+        <hr />
+        <h2 class="h2 font-weight-light text-info">
+            <i class="bi bi-gear"></i>
+            Settings
+        </h2>
+        <hr />
+        <p>
+            <a class="text-decoration-none" href="{% url 'password_change' %}">
+                <i class="bi bi-lock"></i>
+                Change password
+            </a>
+        </p>
+        <p>
+            <a class="text-decoration-none" href="{% url 'users:edit' %}">
+                <i class="bi bi-person-bounding-box"></i>
+                Edit profile
+            </a>
+        </p>
+        <p>
+            <a class="text-decoration-none" href="{% url 'library:add_genre' %}">
+                <i class="bi bi-tags"></i>
+                Add genre
+            </a>
+        </p>
+        <p>
+            <a class="text-decoration-none" href="{% url 'library:add_book' %}">
+                <i class="bi bi-book"></i>
+                Add book
+            </a>
+        </p>
+        <p>
+            <a class="text-decoration-none" href="{% url 'library:book_list' %}">
+                <i class="bi bi-bookshelf"></i>
+                Published books
+            </a>
+        </p>
+    </div>
+
+    <div class="mx-auto align-middle m-5 p-3 col-sm-3 pt-3 shadow">
+        <p>Add a new genre:</p>
+        <form action="{% url 'library:add_genre' %}" method='post'>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button name="submit" class="btn btn-primary btn-block">Add genre</button>
+        </form>
+    </div>
 </div>
 {% endblock content %}
