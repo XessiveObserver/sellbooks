@@ -36,3 +36,9 @@ class ProfileEditForm(forms.ModelForm):
         fields = ('age', 'date_of_birth', 'photo', 'cover_photo', 'biography')
         date = forms.DateTimeField(
             input_formats=['%d/%m/%Y %H:%M'])
+
+
+class DeleteUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = []

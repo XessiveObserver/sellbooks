@@ -9,8 +9,6 @@ urlpatterns = [
     # Login and out url
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    # Dashbord url
-    path('', views.dashboard, name='dashboard'),
     # change password urls
     path('password_change/',
          auth_views.PasswordChangeView.as_view(),
@@ -35,6 +33,10 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     # user account edit
     path('edit/', views.edit, name='edit'),
+    # Dashbord url
+    path('', views.dashboard, name='dashboard'),
     # Settings
     path('settings/', views.settings, name='settings'),
+    # Delete account
+    path('delete_account/', views.delete_account, name='delete_account'),
 ]

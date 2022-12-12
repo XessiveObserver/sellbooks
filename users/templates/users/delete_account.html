@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}Edit your account{% endblock title %}
+
+{% block content %}
+<div class=" mx-auto col-sm-5 pt-3 edit">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-danger border-bottom mb-4 p-2 h2 text-danger">Delete User Account</legend>
+            <p>Are you sure you want to delete your account? This will permanently delete your
+                profile and any content you have generated.</p>
+            {% bootstrap_form delete_form %}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-danger" type="submit">Delete Account</button>
+            <a class="btn btn-secondary" style="float:right;" href="{% url 'users:settings' %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

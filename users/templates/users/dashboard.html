@@ -57,12 +57,12 @@
     
     <div class="col-sm-9 mt-1">
         {% if request.user.is_authenticated %}
-            <div class="col d-flex justify-content-center">
+            <div class="col d-flex justify-content-left">
                 {% if request.user.profile.cover_url %}
                     <img src="{{ request.user.profile.cover_url}}" 
                     alt="cover photo" class="mt-1 img-fluid img-thumbnail" style="height: 22rem; width:50rem;">
                 {% else %}
-                    <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="mt-n4 img-fluid img-thumbnail">
+                    <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="mt-1 img-fluid img-thumbnail">
                 {% endif %}
             </div>
 

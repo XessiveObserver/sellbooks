@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistrationForm,\
-    UserEditForm, ProfileEditForm
+    UserEditForm, ProfileEditForm, DeleteUserForm
 from .models import Profile
 from django.contrib import messages
 
@@ -93,3 +93,22 @@ def edit(request):
 def settings(request):
     """Contains all settings."""
     return render(request, 'users/settings.html')
+
+
+@login_required
+def delete_account(request):
+    """Deletes user account."""
+    if request.method == 'POST':
+        delete_form = DeleteUserForm(request.POST, instance=request.user)
+        user = request.user
+        user.delete()
+        messages.info(request, 'Your account has been deleted.')
+        return redirect('login')
+    else:
+        delete_form = DeleteUserForm(instance=request.user)
+
+    context = {
+        'delete_form': delete_form
+    }
+
+    return render(request, 'users/delete_account.html', context)
