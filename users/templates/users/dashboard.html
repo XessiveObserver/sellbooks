@@ -55,19 +55,19 @@
         </p>
     </div>
     
-    <div class="col-sm-9 mt-1">
+    <div class="col-sm-9 mt-0 shadow">
         {% if request.user.is_authenticated %}
-            <div class="col d-flex justify-content-left">
+            <div class="col d-flex justify-content-center">
                 {% if request.user.profile.cover_url %}
                     <img src="{{ request.user.profile.cover_url}}" 
-                    alt="cover photo" class="mt-1 img-fluid img-thumbnail" style="height: 22rem; width:50rem;">
+                    alt="cover photo" class="mt-2 img-fluid img-thumbnail" style="height: 22rem; width:50rem;">
                 {% else %}
-                    <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="mt-1 img-fluid img-thumbnail">
+                    <img src="{% static 'images/default-cover-image.jpg'%}" alt="avatar" class="mt-2 img-fluid img-thumbnail">
                 {% endif %}
             </div>
 
             <div class="row col-sm-12 my-5 mx-0">
-                <div class="col-sm-5 bg-light mx-auto">
+                <div class="col-sm-5 mx-auto shadow">
                     <div class="my-3">
                         <p>
                             <label class="font-weight-bold">Name:</label> {{ request.user.username }}
@@ -86,7 +86,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-sm-6 bg-light mx-auto my-1">
+                <div class="col-sm-5 mx-auto my-1 shadow">
                     <div class="accordion" id="accordionExample">
                         <div class="card my-3">
                             <div class="card-header" id="headingOne">
