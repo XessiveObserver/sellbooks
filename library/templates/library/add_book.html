@@ -52,7 +52,7 @@
         </p>
     </div>
 
-    <div class="mx-auto align-middle mt-3 p-3 col-sm-3 pt-3 shadow">
+    <div class="mx-auto align-middle mt-3 p-3 col-sm-4 pt-3 shadow">
         <p>Add a new book:</p>
         <form action="{% url 'library:add_book' %}" method='post' enctype="multipart/form-data">
             {% csrf_token %}

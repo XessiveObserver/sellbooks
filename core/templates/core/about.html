@@ -1,8 +1,54 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 
 {% block content %}
-<div class="">
-        <h1 class="text-violet-600 font-bold">Bozo know about us</h1>
+<!-- Hero Section -->
+<div class="col-sm-12 jumbotron text-center text-primary">
+        <h1 class="display-2 font-weight-light">Want to know about us ... <br> stay long
+                enough!</h1>
+        <hr>
+        <p>
+
+        </p>
 </div>
+<div class="row col-sm d-flex justify-content-center p-3">
+        <div class="col-sm"></div>
+        <div class="col-sm text-center">
+                <h2>Mission</h2>
+                <p>To help every under dog writer publish</p>
+        </div>
+</div>
+<div class="row col-sm d-flex justify-content-center p-3">
+        <div class="col-sm text-center">
+                <h2>Vision</h2>
+                <p>To make sure writers focus on what they do best, writing</p>
+        </div>
+        <div class="col-sm"></div>
+</div>
+<!-- What People say section -->
+<h2 class="display-3 text-center text-primary p-3">What people Say</h2>
+<div class="row col-sm d-flex justify-content-center">
+        <div class="col-sm">
+                <img class="img-fluid img-thumbnail rounded-circle my-3" style="width: 8rem; height: 8rem;"
+                        src="{% static 'images/avatar.jpg' %}" alt="john doe">
+                <h2>John Doe</h2>
+                <p>Y'all ain't gonna believe how much pubishing <br> time I saved, my advice just stick around</p>
+        </div>
+        <div class="col-sm">
+                <img class="img-fluid img-thumbnail rounded-circle my-3" style="width: 8rem; height: 8rem;"
+                        src="{% static 'images/avatar.jpg' %}" alt="john doe">
+                <h2>Jane Doe</h2>
+                <p>Y'all ain't gonna believe how much pubishing <br> time I saved, my advice just stick around</p>
+        </div>
+        <div class="col-sm">
+                <img class="img-fluid img-thumbnail rounded-circle my-3" style="width: 8rem; height: 8rem;"
+                        src="{% static 'images/avatar.jpg' %}" alt="john doe">
+                <h2>John Doe 2</h2>
+                <p>Y'all ain't gonna believe how much pubishing <br> time I saved, my advice just stick around</p>
+        </div>
+
+</div>
+
+
 {% endblock content %}
