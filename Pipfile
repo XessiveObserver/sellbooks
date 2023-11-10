@@ -8,6 +8,7 @@ django = "==4.0"
 pillow = "*"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
 django-bootstrap4 = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
